@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Itim&family=Mali:wght@400;500;600;700&family=Sriracha&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1800px;
+    height: 1200px;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Mali', cursive;
+  }
+  .canvas {
+    position: relative;
+    width: 1800px;
+    height: 1200px;
+    background-image: url('{{BASE_IMAGE_URL}}');
+    background-size: 1800px 1200px;
+    background-position: center;
+  }
+  .warm-glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 820px 520px at 69% 34%, rgba(10, 18, 42, 0.38) 0%, transparent 75%),
+      radial-gradient(circle 320px at 51% 78%, rgba(255, 195, 130, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .svg-doodles {
+    position: absolute;
+    inset: 0;
+    width: 1800px;
+    height: 1200px;
+    pointer-events: none;
+  }
+  .cute-box {
+    position: absolute;
+    top: 150px;
+    left: 695px;
+    width: 960px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 245, 225, 0.94);
+    color: #26324d;
+    font-family: 'Caveat', cursive;
+    font-size: 36px;
+    font-weight: 700;
+    padding: 4px 30px;
+    border-radius: 99px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45), 0 0 18px rgba(255, 220, 150, 0.45);
+    transform: rotate(-1.5deg);
+    margin-bottom: 16px;
+  }
+  .pill-badge span.heart {
+    color: #e85d75;
+    font-size: 30px;
+  }
+  .cute-title {
+    font-family: 'Sriracha', cursive;
+    font-size: 76px;
+    line-height: 1.22;
+    color: #fffaf0;
+    text-shadow:
+      0 4px 0px rgba(32, 45, 78, 0.9),
+      0 8px 24px rgba(0, 0, 0, 0.85),
+      0 0 28px rgba(255, 210, 135, 0.4);
+    margin-bottom: 8px;
+  }
+  .cute-subtitle {
+    font-family: 'Mali', cursive;
+    font-size: 42px;
+    font-weight: 700;
+    color: #ffe299;
+    text-shadow:
+      0 3px 12px rgba(0, 0, 0, 0.9),
+      0 0 18px rgba(255, 200, 110, 0.35);
+    margin-bottom: 22px;
+  }
+  .cute-message {
+    font-family: 'Mali', cursive;
+    font-size: 22.5px;
+    font-weight: 500;
+    line-height: 1.8;
+    color: #ffffff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95), 0 0 8px rgba(0, 0, 0, 0.8);
+    white-space: nowrap;
+    background: rgba(12, 24, 52, 0.38);
+    border: 1.5px dashed rgba(255, 235, 190, 0.58);
+    border-radius: 26px;
+    padding: 18px 38px;
+    backdrop-filter: blur(3px);
+  }
+  .wife-note {
+    position: absolute;
+    left: 1030px;
+    top: 720px;
+    font-family: 'Mali', cursive;
+    font-size: 25px;
+    font-weight: 700;
+    color: #fff7e0;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.95);
+    transform: rotate(-4deg);
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="warm-glow"></div>
+
+  <svg class="svg-doodles" viewBox="0 0 1800 1200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="bulbGlow" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="7" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+
+    <!-- Hand-drawn Sketchy Rounded Frame -->
+    <rect x="34" y="34" width="1732" height="1132" rx="28" ry="28"
+          fill="none" stroke="#fff5dc" stroke-width="2.2" stroke-dasharray="14 10" stroke-linecap="round" opacity="0.65"/>
+
+    <!-- String of Warm Camping Fairy Lights along Top Right Sky -->
+    <path d="M 395,34 Q 780,145 1180,75 Q 1490,140 1766,55" fill="none" stroke="#ffecc4" stroke-width="2" opacity="0.8"/>
+    <g filter="url(#bulbGlow)">
+      <circle cx="520" cy="65" r="7" fill="#ffe49e"/>
+      <circle cx="660" cy="92" r="8" fill="#ffd97d"/>
+      <circle cx="810" cy="106" r="7.5" fill="#ffe49e"/>
+      <circle cx="960" cy="103" r="8" fill="#ffd97d"/>
+      <circle cx="1100" cy="87" r="7" fill="#ffe49e"/>
+      <circle cx="1250" cy="88" r="7.5" fill="#ffd97d"/>
+      <circle cx="1400" cy="105" r="8" fill="#ffe49e"/>
+      <circle cx="1550" cy="102" r="7.5" fill="#ffd97d"/>
+      <circle cx="1690" cy="76" r="7" fill="#ffe49e"/>
+    </g>
+
+    <!-- Cute Smiling Crescent Moon on Top Left of Text Box -->
+    <g transform="translate(595, 165) rotate(-12)" filter="url(#bulbGlow)">
+      <path d="M 45,10 A 42,42 0 1,0 78,68 A 34,34 0 1,1 45,10 Z" fill="#ffe699" stroke="#fff8e0" stroke-width="2"/>
+    </g>
+
+    <!-- Hand-drawn Doodle Stars & Hearts around the Sky -->
+    <path d="M 1665,190 L 1672,210 L 1693,212 L 1676,225 L 1681,245 L 1665,233 L 1649,245 L 1654,225 L 1637,212 L 1658,210 Z"
+          fill="#ffe699" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" filter="url(#bulbGlow)"/>
+    <path d="M 660,450 L 665,464 L 680,466 L 668,475 L 672,490 L 660,481 L 648,490 L 652,475 L 640,466 L 655,464 Z"
+          fill="#ffe699" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" filter="url(#bulbGlow)"/>
+    <path d="M 1610,520 L 1614,532 L 1627,533 L 1617,541 L 1620,553 L 1610,545 L 1600,553 L 1603,541 L 1593,533 L 1606,532 Z"
+          fill="#ffe699" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+
+    <!-- Cute Doodled Hearts Floating Cleanly to the Right of the Guy-Line Rope Above the Wife -->
+    <path d="M 960,792 C 960,779 943,771 935,783 C 927,771 910,779 910,792 C 910,809 935,822 935,831 C 935,822 960,809 960,792 Z"
+          fill="#ff7b93" stroke="#fff5f7" stroke-width="2.2" transform="rotate(-8 935 802)" filter="url(#bulbGlow)"/>
+    <path d="M 998,742 C 998,733 986,727 980,736 C 974,727 962,733 962,742 C 962,754 980,763 980,770 C 980,763 998,754 998,742 Z"
+          fill="#ffa6b6" stroke="#ffffff" stroke-width="1.8" transform="rotate(12 980 750)"/>
+    <!-- Heart near text box right -->
+    <path d="M 1595,335 C 1595,323 1579,315 1571,327 C 1563,315 1547,323 1547,335 C 1547,351 1571,363 1571,371 C 1571,363 1595,351 1595,335 Z"
+          fill="#ff7b93" stroke="#ffffff" stroke-width="2" transform="rotate(15 1571 345)"/>
+
+    <!-- Hand-drawn curved arrow pointing smoothly toward the smiling wife -->
+    <path d="M 1095,768 Q 1065,830 995,852" fill="none" stroke="#fff5dc" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/>
+    <path d="M 1008,839 L 992,853 L 1012,860" fill="none" stroke="#fff5dc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Cute Sparkle Crosses -->
+    <g stroke="#fff8e3" stroke-width="2.5" stroke-linecap="round" opacity="0.9">
+      <line x1="735" y1="175" x2="735" y2="197"/><line x1="724" y1="186" x2="746" y2="186"/>
+      <line x1="1520" y1="168" x2="1520" y2="188"/><line x1="1510" y1="178" x2="1530" y2="178"/>
+      <line x1="730" y1="590" x2="730" y2="608"/><line x1="721" y1="599" x2="739" y2="599"/>
+      <line x1="1440" y1="640" x2="1440" y2="660"/><line x1="1430" y1="650" x2="1450" y2="650"/>
+    </g>
+  </svg>
+
+  <div class="cute-box">
+    <div class="pill-badge">
+      <span class="heart">♥</span>
+      <span>Happy Birthday To My Lovely Wife</span>
+      <span class="heart">♥</span>
+    </div>
+    <div class="cute-title">สุขสันต์วันเกิดนะคุณภรรยา</div>
+    <div class="cute-subtitle">ขอบคุณที่อยู่ข้างกันเสมอ ♡</div>
+    <div class="cute-message">
+      ไม่ว่าจะไปที่ไหน แค่มีเธอนั่งชิลล์อยู่ข้างๆ แบบนี้ก็พอแล้ว<br>
+      ขอให้มีความสุขมากๆ สุขภาพแข็งแรง ไปเที่ยวด้วยกันไปนานๆ นะ
+    </div>
+  </div>
+
+  <div class="wife-note">คุณภรรยาคนเก่ง ♡</div>
+</div>
+</body>
+</html>

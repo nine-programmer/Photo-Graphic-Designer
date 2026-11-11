@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Noto+Serif+Thai:wght@400;600&family=Prompt:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1800px;
+    height: 1200px;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Prompt', sans-serif;
+  }
+  .canvas {
+    position: relative;
+    width: 1800px;
+    height: 1200px;
+    background-image: url('{{BASE_IMAGE_URL}}');
+    background-size: 1800px 1200px;
+    background-position: center;
+  }
+  .editorial-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(5, 12, 28, 0.45) 0%, rgba(5, 12, 28, 0.12) 22%, transparent 50%),
+      radial-gradient(ellipse 750px 520px at 73% 36%, rgba(6, 14, 34, 0.45) 0%, transparent 75%);
+    pointer-events: none;
+  }
+  .frame {
+    position: absolute;
+    inset: 38px;
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    pointer-events: none;
+  }
+  .header-bar {
+    position: absolute;
+    top: 38px;
+    left: 38px;
+    right: 38px;
+    height: 58px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    background: rgba(8, 16, 36, 0.22);
+  }
+  .header-center {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    letter-spacing: 6px;
+  }
+  .editorial-block {
+    position: absolute;
+    top: 165px;
+    right: 95px;
+    width: 835px;
+    color: #ffffff;
+    padding-left: 40px;
+    border-left: 1.5px solid rgba(255, 255, 255, 0.45);
+  }
+  .issue-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 99px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(4px);
+  }
+  .eng-display {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 84px;
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.65);
+    margin-bottom: 24px;
+  }
+  .eng-display span {
+    font-style: italic;
+    font-weight: 600;
+    color: #f3dfc1;
+  }
+  .thai-headline {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.8);
+    margin-bottom: 8px;
+  }
+  .thai-subheadline {
+    font-family: 'Prompt', sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    color: #f3dfc1;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+    margin-bottom: 24px;
+  }
+  .divider {
+    width: 110px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.55);
+    margin-bottom: 22px;
+  }
+  .thai-body {
+    font-family: 'Prompt', sans-serif;
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 1.8;
+    letter-spacing: 0.6px;
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+  }
+  .bottom-stamp {
+    position: absolute;
+    bottom: 66px;
+    right: 76px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 26px;
+    background: rgba(10, 19, 38, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    backdrop-filter: blur(6px);
+    color: #fff;
+  }
+  .stamp-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3.5px;
+    line-height: 1.6;
+  }
+  .stamp-text strong {
+    display: block;
+    font-size: 14px;
+    color: #f3dfc1;
+    letter-spacing: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="editorial-gradient"></div>
+  <div class="frame"></div>
+
+  <div class="header-bar">
+    <div>SPECIAL EDITION  •  BIRTHDAY ARCHIVE</div>
+    <div class="header-center">
+      <span>✦</span>
+      <span>STARLIGHT &amp; CAMPFIRE MEMORIES</span>
+      <span>✦</span>
+    </div>
+    <div>KIRIWONG CAMPING</div>
+  </div>
+
+  <div class="editorial-block">
+    <div class="issue-tag">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f3dfc1" stroke-width="2">
+        <path d="M12 2L14.8 8.5L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.2 8.5L12 2Z"/>
+      </svg>
+      <span>MY FAVORITE PERSON IN THE UNIVERSE</span>
+    </div>
+
+    <div class="eng-display">
+      Happy Birthday,<br>
+      <span>My Beloved Wife.</span>
+    </div>
+
+    <div class="thai-headline">สุขสันต์วันเกิดนะคนดี</div>
+    <div class="thai-subheadline">ขอบคุณที่อยู่ข้างกันเสมอ</div>
+    <div class="divider"></div>
+    <div class="thai-body">
+      ไม่ว่าจะออกเดินทางไปที่ไหน หรือผ่านไปอีกกี่ฤดูกาล<br>
+      แค่มีเธออยู่ข้างๆ นั่งมองดาวด้วยกันแบบนี้... ทุกที่ก็คือความสุขของเรา
+    </div>
+  </div>
+
+  <div class="bottom-stamp">
+    <svg width="54" height="54" viewBox="0 0 64 64" fill="none" stroke="#f3dfc1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="32" r="29" stroke-opacity="0.45"/>
+      <path d="M14 46 L32 20 L50 46 Z"/>
+      <path d="M32 20 L32 46"/>
+      <path d="M25 46 L32 34 L39 46"/>
+      <path d="M10 46 L54 46"/>
+      <circle cx="22" cy="18" r="1.2" fill="#f3dfc1"/>
+      <circle cx="44" cy="20" r="1.5" fill="#f3dfc1"/>
+      <path d="M41 11 A 5 5 0 1 0 46 16 A 4 4 0 1 1 41 11 Z" fill="#f3dfc1" stroke="none"/>
+    </svg>
+    <div class="stamp-text">
+      <strong>FOREVER CO-TRAVELER</strong>
+      <span>365 DAYS OF WARMTH &amp; LOVE</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

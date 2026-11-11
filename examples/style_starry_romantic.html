@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Prompt:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1800px;
+    height: 1200px;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Prompt', sans-serif;
+  }
+  .canvas {
+    position: relative;
+    width: 1800px;
+    height: 1200px;
+    background-image: url('{{BASE_IMAGE_URL}}');
+    background-size: 1800px 1200px;
+    background-position: center;
+  }
+  .sky-glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 850px 550px at 68% 32%, rgba(8, 17, 42, 0.42) 0%, rgba(15, 28, 65, 0.18) 55%, transparent 100%),
+      radial-gradient(circle 400px at 50% 80%, rgba(255, 215, 150, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .svg-overlay {
+    position: absolute;
+    inset: 0;
+    width: 1800px;
+    height: 1200px;
+    pointer-events: none;
+  }
+  .text-container {
+    position: absolute;
+    top: 120px;
+    left: 650px;
+    width: 1040px;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .moon-emblem {
+    margin-bottom: 14px;
+    filter: drop-shadow(0 0 12px rgba(255, 223, 148, 0.75));
+  }
+  .eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 9px;
+    color: #f6e2b3;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85), 0 0 18px rgba(255, 215, 130, 0.45);
+    margin-bottom: 10px;
+  }
+  .main-title-th {
+    font-family: 'Charm', cursive;
+    font-size: 94px;
+    font-weight: 700;
+    line-height: 1.25;
+    padding: 4px 24px;
+    background: linear-gradient(180deg, #ffffff 0%, #fff6df 45%, #f0ca86 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 28px rgba(255, 208, 120, 0.38));
+    margin-bottom: 6px;
+  }
+  .sub-title-th {
+    font-family: 'Prompt', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #fff8eb;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9), 0 0 22px rgba(255, 220, 150, 0.4);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .sub-title-th::before, .sub-title-th::after {
+    content: "";
+    display: inline-block;
+    width: 75px;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, rgba(246, 226, 179, 0.85), transparent);
+  }
+  .quote-th {
+    font-family: 'Prompt', sans-serif;
+    font-size: 21.5px;
+    font-weight: 300;
+    line-height: 1.8;
+    letter-spacing: 0.6px;
+    color: rgba(255, 252, 245, 0.94);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 8px rgba(0, 0, 0, 0.7);
+    white-space: nowrap;
+  }
+  .english-script {
+    margin-top: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 26px;
+    letter-spacing: 3px;
+    color: rgba(246, 226, 179, 0.92);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="sky-glow"></div>
+
+  <!-- Celestial Frame & Constellations SVG -->
+  <svg class="svg-overlay" viewBox="0 0 1800 1200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#fff6d6" stop-opacity="0.9"/>
+        <stop offset="50%" stop-color="#e8c27d" stop-opacity="0.75"/>
+        <stop offset="100%" stop-color="#fff3cc" stop-opacity="0.85"/>
+      </linearGradient>
+      <linearGradient id="shootGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+        <stop offset="40%" stop-color="#ffe7b3" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#ffe7b3" stop-opacity="0"/>
+      </linearGradient>
+      <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="3.5" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="6" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <g id="star4">
+        <path d="M 0,-14 C 1.5,-3 3,-1.5 14,0 C 3,1.5 1.5,3 0,14 C -1.5,3 -3,1.5 -14,0 C -3,-1.5 -1.5,-3 0,-14 Z" fill="#fff9e6"/>
+        <circle cx="0" cy="0" r="2.5" fill="#ffffff"/>
+      </g>
+      <g id="star4-sm">
+        <path d="M 0,-8 C 1,-2 2,-1 8,0 C 2,1 1,2 0,8 C -1,2 -2,1 -8,0 C -2,-1 -1,-2 0,-8 Z" fill="#ffeab8"/>
+      </g>
+    </defs>
+
+    <!-- Delicate Celestial Outer Frame -->
+    <path d="M 36,160 L 36,36 L 1764,36 L 1764,1164 L 1180,1164" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" stroke-opacity="0.55"/>
+    <path d="M 48,140 L 48,48 L 1752,48 L 1752,1152 L 1220,1152" fill="none" stroke="url(#goldGrad)" stroke-width="0.8" stroke-opacity="0.35"/>
+
+    <!-- Top Right Corner Celestial Astrolabe Ornament -->
+    <g transform="translate(1764, 36)" stroke="url(#goldGrad)" fill="none" opacity="0.75">
+      <path d="M -90,0 A 90,90 0 0,0 0,90" stroke-width="1.2"/>
+      <path d="M -65,0 A 65,65 0 0,0 0,65" stroke-width="0.8" stroke-dasharray="4 4"/>
+      <line x1="-110" y1="12" x2="-12" y2="110" stroke-width="0.7" opacity="0.5"/>
+    </g>
+    <!-- Bottom Right Corner Ornament -->
+    <g transform="translate(1764, 1164)" stroke="url(#goldGrad)" fill="none" opacity="0.75">
+      <path d="M -90,0 A 90,90 0 0,1 0,-90" stroke-width="1.2"/>
+      <path d="M -65,0 A 65,65 0 0,1 0,-65" stroke-width="0.8" stroke-dasharray="4 4"/>
+    </g>
+
+    <!-- Subtle Celestial Arc behind text block -->
+    <path d="M 650,240 A 620,620 0 0,1 1690,240" fill="none" stroke="url(#goldGrad)" stroke-width="0.9" stroke-dasharray="3 7" opacity="0.45"/>
+    <path d="M 760,565 A 550,550 0 0,0 1580,565" fill="none" stroke="url(#goldGrad)" stroke-width="0.8" stroke-dasharray="2 6" opacity="0.4"/>
+
+    <!-- CONSTELLATION 1: Heart-inspired Constellation in Sky (Left of Text, above couple) -->
+    <g filter="url(#glow)" opacity="0.85">
+      <polyline points="575,215 608,188 645,205 665,178 702,195 688,242 642,285 592,250 575,215"
+                fill="none" stroke="#fff3d1" stroke-width="1.1" stroke-dasharray="4 3" stroke-opacity="0.65"/>
+      <line x1="645" y1="205" x2="642" y2="285" stroke="#fff3d1" stroke-width="0.7" stroke-opacity="0.35"/>
+      <circle cx="575" cy="215" r="3" fill="#fff"/>
+      <circle cx="608" cy="188" r="2.5" fill="#ffe7b3"/>
+      <circle cx="645" cy="205" r="3.5" fill="#fff"/>
+      <circle cx="665" cy="178" r="2.8" fill="#ffe7b3"/>
+      <circle cx="702" cy="195" r="3" fill="#fff"/>
+      <circle cx="688" cy="242" r="2.2" fill="#ffe7b3"/>
+      <circle cx="642" cy="285" r="4" fill="#fff"/>
+      <circle cx="592" cy="250" r="2.5" fill="#ffe7b3"/>
+      <use href="#star4-sm" x="645" y="205"/>
+      <use href="#star4-sm" x="642" y="285"/>
+    </g>
+
+    <!-- CONSTELLATION 2: Cassiopeia / Crown Star Pattern (Far Right Sky) -->
+    <g filter="url(#glow)" opacity="0.8">
+      <polyline points="1540,150 1585,185 1625,168 1675,215 1715,190"
+                fill="none" stroke="#fff3d1" stroke-width="1.1" stroke-opacity="0.55"/>
+      <circle cx="1540" cy="150" r="2.8" fill="#fff"/>
+      <circle cx="1585" cy="185" r="3.5" fill="#ffeab8"/>
+      <circle cx="1625" cy="168" r="2.5" fill="#fff"/>
+      <circle cx="1675" cy="215" r="3.2" fill="#ffeab8"/>
+      <circle cx="1715" cy="190" r="2.5" fill="#fff"/>
+      <use href="#star4-sm" x="1585" y="185"/>
+      <use href="#star4" x="1675" y="215" transform="scale(0.8)" style="transform-origin: 1675px 215px;"/>
+    </g>
+
+    <!-- CONSTELLATION 3: Lower Right Sky Lyra Pattern -->
+    <g filter="url(#glow)" opacity="0.72">
+      <polyline points="1450,620 1505,595 1560,635 1540,690 1475,670 1505,595"
+                fill="none" stroke="#fff3d1" stroke-width="1" stroke-dasharray="3 4" stroke-opacity="0.5"/>
+      <circle cx="1450" cy="620" r="3.5" fill="#fff"/>
+      <circle cx="1505" cy="595" r="2.5" fill="#ffeab8"/>
+      <circle cx="1560" cy="635" r="3" fill="#fff"/>
+      <circle cx="1540" cy="690" r="2.2" fill="#ffeab8"/>
+      <circle cx="1475" cy="670" r="2.5" fill="#fff"/>
+      <use href="#star4-sm" x="1450" y="620"/>
+    </g>
+
+    <!-- Shooting Stars -->
+    <g transform="translate(520, 105) rotate(-18)" filter="url(#glow)">
+      <line x1="0" y1="0" x2="160" y2="0" stroke="url(#shootGrad)" stroke-width="2.2" stroke-linecap="round"/>
+      <use href="#star4-sm" x="0" y="0"/>
+    </g>
+    <g transform="translate(1520, 460) rotate(-22)" filter="url(#glow)" opacity="0.85">
+      <line x1="0" y1="0" x2="130" y2="0" stroke="url(#shootGrad)" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="2.5" fill="#fff"/>
+    </g>
+
+    <!-- Extra Twinkling Star Sparkles positioned cleanly outside text -->
+    <g filter="url(#softGlow)">
+      <use href="#star4" x="780" y="130"/>
+      <use href="#star4" x="1585" y="340"/>
+      <use href="#star4-sm" x="680" y="535"/>
+      <use href="#star4-sm" x="1170" y="695"/>
+      <use href="#star4-sm" x="1040" y="95"/>
+      <use href="#star4-sm" x="1370" y="115"/>
+      <use href="#star4-sm" x="710" y="420"/>
+    </g>
+  </svg>
+
+  <!-- Typography Block -->
+  <div class="text-container">
+    <svg class="moon-emblem" width="76" height="76" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 48,14 A 26,26 0 1,0 66,52 A 21,21 0 1,1 48,14 Z" fill="#f7e2b0"/>
+      <path d="M 56,22 C 57,27 58,28 63,29 C 58,30 57,31 56,36 C 55,31 54,30 49,29 C 54,28 55,27 56,22 Z" fill="#ffffff"/>
+      <circle cx="38" cy="20" r="1.5" fill="#fff8e7"/>
+      <circle cx="64" cy="40" r="1.5" fill="#fff8e7"/>
+    </svg>
+
+    <div class="eyebrow">✦ HAPPY BIRTHDAY MY LOVE ✦</div>
+    <div class="main-title-th">สุขสันต์วันเกิดนะคนดี</div>
+    <div class="sub-title-th">ขอบคุณที่อยู่ข้างกันเสมอ</div>
+    <div class="quote-th">
+      ใต้ท้องฟ้าที่มีดาวนับล้านดวง...<br>
+      ขอบคุณเธอที่เป็นความสุข เป็นรอยยิ้ม และเป็นดาวที่สว่างที่สุดในทุกๆ วันของฉัน
+    </div>
+    <div class="english-script">— Forever Under the Same Sky —</div>
+  </div>
+</div>
+</body>
+</html>
